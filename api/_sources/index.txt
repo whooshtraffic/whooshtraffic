@@ -3,74 +3,55 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-===
-API
-===
+==========================
+API Services Documentation
+==========================
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
    
-   API <api>
+   API Docs <api>
 
-===================
-A Basic PHP Example
-===================
+=============
+Authorization
+=============
 
-This example is meant to complement the Python based examples, please
-refer to the `PHP cURL Docs <http://php.net/manual/en/book.curl.php>`_
-and `PHP JSON Docs <http://php.net/manual/en/book.json.php>`_ for
-further explanation of cURL options.
+Authorization with the WhooshTraffic API is simple (this applies to
+all available API's); it requires credentials to be sent ``base64``
+encoded using the `HTTP Basic Authorization
+<http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#14.8>`_
+header.
 
-This PHP example will make use of an object oriented cURL wrapper
-library Parnell wrote for the opensource KohanaPHP framework:
+An example using Python::
 
-* As a ZIP archive: `curl.zip <https://secure.whooshtraffic.com/static/downloads/curl.zip>`_
-* As a PAX archive: `curl.pax <https://secure.whooshtraffic.com/static/downloads/curl.pax>`_
+       ...
+       # Assuming these to be a valid login/key
+       login = "4f//y1YFy5PpFLW"
+       key   = "GrSCMg45heb7Y.IK.iogIOeQAi2C4yb./iPT6hnZ5UZwpTS1z4qWu"
+       
+       # Format and b64encode according to 14.8
+       auth = base64.b64encode(login+':'+key)
+       
+       # Build the request
+       req = urllib2.Request('https://secure.whooshtraffic.com/ranktracker/pairs')
+       req.add_header('Authorization', 'Basic %s' % auth)
+       req.add_header('Accept', 'application/vnd.whoosh.api+json')
+       req.add_header('Range', 'offset=0')
+       
+       result = opener.open(req)
 
-The first thing to keep in mind is that PHP's cURL implementation will
-already **base64** encode your authorization header value, please use
-the example below as a reference for your own implementation::
+Please note, the term "Basic " (with a trailing space) must come
+before the base64 encoded credentials! If not, the server will reject
+the attempt returning a ``500 Server Error`` response.
 
-       <?php
-       
-       require 'Curl.php';
-       
-       # Set your login token and key
-       $login = "dfjsgIDKsHOskd32dsfw";
-       $key   = "ksdfjsjf922j2ksdkf.laksdjfkjaj23dskf/fjjsd.dfss/s7O";
-       
-       # Setup initial cURL options
-       $options = array
-       (
-           CURLOPT_FAILONERROR      => False,
-           CURLOPT_FOLLOWLOCATION   => True,
-           CURLOPT_RETURNTRANSFER   => True,
-           CURLOPT_FRESH_CONNECT    => True,
-           CURLOPT_FORBID_REUSE     => True,
-           CURLOPT_POST             => False,
-           CURLOPT_URL              => "https://secure.whooshtraffic.com/ranktracker/pairs",
-           CURLOPT_HTTPAUTH         => CURLAUTH_BASIC,
-           CURLOPT_USERPWD          => $login.":".$key, # cURL base64 encodes it automatically
-           CURLOPT_HTTPHEADER       => array("Accept: application/vnd.whoosh.api+json", "Range: offset=0"),
-           CURLOPT_SSL_VERIFYHOST   => 2
-       );
-       
-       $curl   = new Curl($options);
-       
-       # Execute the cURL session and ignore cURL errorno "22" so we can branch on HTTP status codes
-       $result = $curl->execute(array(22));
-       
-       # Return the status, this defaults to the HTTP status code returned by the session
-       echo $curl->status() . "<br />";
-       
-       if ($curl->status() === 200)
-       {
-           echo var_export(json_decode($result));
-       } else {
-           echo $result;
-       }
+If you send an incorrectly formatted authorization header, or none,
+the server will return a ``400 Bad Request``; if you send credentials
+that cannot be authenticated the server will return a ``401
+Unauthorized``; and if you send valid credentials but are requesting a
+resource that does not belong to you the server will return a ``404
+Not Found`` response.
 
 ==================
 Indices and tables

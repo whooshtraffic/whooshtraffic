@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>API &mdash; Whoosh Traffic! API 2.0 documentation</title>
+    <title>API Services Documentation &mdash; Whoosh Traffic! API 2.0 documentation</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -33,7 +33,7 @@
   <body>
       <div class="header"><h1 class="heading"><a href="#">
           <span>Whoosh Traffic! API 2.0 documentation</span></a></h1>
-        <h2 class="heading"><span>API</span></h2>
+        <h2 class="heading"><span>API Services Documentation</span></h2>
       </div>
       <div class="topnav">
       
@@ -47,74 +47,51 @@
       <div class="content">
         
         
-  <div class="section" id="api">
-<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="api-services-documentation">
+<h1>API Services Documentation<a class="headerlink" href="#api-services-documentation" title="Permalink to this headline">¶</a></h1>
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Documentation</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Docs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ranktracker_api.html">Rank Tracker</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#security">Security</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#authorization">Authorization</a></li>
 </ul>
 </div>
 </div>
-<div class="section" id="a-basic-php-example">
-<h1>A Basic PHP Example<a class="headerlink" href="#a-basic-php-example" title="Permalink to this headline">¶</a></h1>
-<p>This example is meant to complement the Python based examples, please
-refer to the <a class="reference external" href="http://php.net/manual/en/book.curl.php">PHP cURL Docs</a>
-and <a class="reference external" href="http://php.net/manual/en/book.json.php">PHP JSON Docs</a> for
-further explanation of cURL options.</p>
-<p>This PHP example will make use of an object oriented cURL wrapper
-library Parnell wrote for the opensource KohanaPHP framework:</p>
-<ul class="simple">
-<li>As a ZIP archive: <a class="reference external" href="https://secure.whooshtraffic.com/static/downloads/curl.zip">curl.zip</a></li>
-<li>As a PAX archive: <a class="reference external" href="https://secure.whooshtraffic.com/static/downloads/curl.pax">curl.pax</a></li>
-</ul>
-<p>The first thing to keep in mind is that PHP&#8217;s cURL implementation will
-already <strong>base64</strong> encode your authorization header value, please use
-the example below as a reference for your own implementation:</p>
-<div class="highlight-python"><pre>&lt;?php
+<div class="section" id="authorization">
+<h1>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h1>
+<p>Authorization with the WhooshTraffic API is simple (this applies to
+all available API&#8217;s); it requires credentials to be sent <tt class="docutils literal"><span class="pre">base64</span></tt>
+encoded using the <a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#14.8">HTTP Basic Authorization</a>
+header.</p>
+<p>An example using Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Assuming these to be a valid login/key</span>
+<span class="n">login</span> <span class="o">=</span> <span class="s">&quot;4f//y1YFy5PpFLW&quot;</span>
+<span class="n">key</span>   <span class="o">=</span> <span class="s">&quot;GrSCMg45heb7Y.IK.iogIOeQAi2C4yb./iPT6hnZ5UZwpTS1z4qWu&quot;</span>
 
-require 'Curl.php';
+<span class="c"># Format and b64encode according to 14.8</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">login</span><span class="o">+</span><span class="s">&#39;:&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">)</span>
 
-# Set your login token and key
-$login = "dfjsgIDKsHOskd32dsfw";
-$key   = "ksdfjsjf922j2ksdkf.laksdjfkjaj23dskf/fjjsd.dfss/s7O";
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Accept&#39;</span><span class="p">,</span> <span class="s">&#39;application/vnd.whoosh.api+json&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Range&#39;</span><span class="p">,</span> <span class="s">&#39;offset=0&#39;</span><span class="p">)</span>
 
-# Setup initial cURL options
-$options = array
-(
-    CURLOPT_FAILONERROR      =&gt; False,
-    CURLOPT_FOLLOWLOCATION   =&gt; True,
-    CURLOPT_RETURNTRANSFER   =&gt; True,
-    CURLOPT_FRESH_CONNECT    =&gt; True,
-    CURLOPT_FORBID_REUSE     =&gt; True,
-    CURLOPT_POST             =&gt; False,
-    CURLOPT_URL              =&gt; "https://secure.whooshtraffic.com/ranktracker/pairs",
-    CURLOPT_HTTPAUTH         =&gt; CURLAUTH_BASIC,
-    CURLOPT_USERPWD          =&gt; $login.":".$key, # cURL base64 encodes it automatically
-    CURLOPT_HTTPHEADER       =&gt; array("Accept: application/vnd.whoosh.api+json", "Range: offset=0"),
-    CURLOPT_SSL_VERIFYHOST   =&gt; 2
-);
-
-$curl   = new Curl($options);
-
-# Execute the cURL session and ignore cURL errorno "22" so we can branch on HTTP status codes
-$result = $curl-&gt;execute(array(22));
-
-# Return the status, this defaults to the HTTP status code returned by the session
-echo $curl-&gt;status() . "&lt;br /&gt;";
-
-if ($curl-&gt;status() === 200)
-{
-    echo var_export(json_decode($result));
-} else {
-    echo $result;
-}</pre>
+<span class="n">result</span> <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</pre></div>
 </div>
+<p>Please note, the term &#8220;Basic &#8221; (with a trailing space) must come
+before the base64 encoded credentials! If not, the server will reject
+the attempt returning a <tt class="docutils literal"><span class="pre">500</span> <span class="pre">Server</span> <span class="pre">Error</span></tt> response.</p>
+<p>If you send an incorrectly formatted authorization header, or none,
+the server will return a <tt class="docutils literal"><span class="pre">400</span> <span class="pre">Bad</span> <span class="pre">Request</span></tt>; if you send credentials
+that cannot be authenticated the server will return a <tt class="docutils literal"><span class="pre">401</span>
+<span class="pre">Unauthorized</span></tt>; and if you send valid credentials but are requesting a
+resource that does not belong to you the server will return a <tt class="docutils literal"><span class="pre">404</span>
+<span class="pre">Not</span> <span class="pre">Found</span></tt> response.</p>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
