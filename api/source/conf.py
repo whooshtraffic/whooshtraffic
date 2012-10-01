@@ -11,7 +11,9 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os
+import sys, os, datetime
+
+utcnow = datetime.datetime.utcnow()
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -40,8 +42,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Whoosh Traffic! API'
-copyright = u'2011, Whoosh Traffic!'
+project = u'Whoosh Traffic API'
+copyright = u'%d, Whoosh Traffic' % utcnow.year
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -222,7 +224,7 @@ man_pages = [
 epub_title = u'Whoosh Traffic! API'
 epub_author = u'Parnell Springmeyer'
 epub_publisher = u'Parnell Springmeyer'
-epub_copyright = u'2011, Parnell Springmeyer'
+epub_copyright = u'%d, Parnell Springmeyer' % utcnow.year
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
