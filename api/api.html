@@ -1,0 +1,192 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API Documentation &mdash; Whoosh Traffic! API v2.0 documentation</title>
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="Whoosh Traffic! API v2.0 documentation" href="index.html" />
+    <link rel="next" title="Rank Tracker API Documentation" href="ranktracker_api.html" />
+    <link rel="prev" title="API" href="index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Whoosh Traffic! API v2.0 documentation</span></a></h1>
+        <h2 class="heading"><span>API Documentation</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="index.html">API</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ranktracker_api.html">Rank Tracker API Documentation</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="api-documentation">
+<h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api.html">Rank Tracker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html">GET a single URL/Keyword pair</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-all-or-a-range-of-configured-url-keyword-pairs">GET all (or a range of) configured URL/Keyword pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-all-or-a-range-of-configured-ranking-url-keyword-pairs">GET all (or a range of) configured <em>ranking</em> URL/Keyword pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-all-or-a-range-of-configured-unranked-url-keyword-pairs">GET all (or a range of) configured <em>unranked</em> URL/Keyword pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-a-pair-s-timeline">GET a pair&#8217;s timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-a-pair-s-settings">GET a pair&#8217;s settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-a-count-of-all-your-pairs">GET a count of all your pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-a-count-of-all-your-ranking-pairs">GET a count of all your ranking pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-a-count-of-all-your-unranking-pairs">GET a count of all your unranking pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-a-pair-s-latest-page-cache-of-the-rank">GET a pair&#8217;s latest page cache of the rank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-a-checksum-of-all-your-pairs">GET a checksum of all your pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-a-checksum-for-a-single-pair">GET a checksum for a single pair</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-a-checksum-for-all-ranked-pairs">GET a checksum for all ranked pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_get.html#get-a-checksum-for-all-unranked-pairs">GET a checksum for all unranked pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_head.html">HEAD check if a URL/Keyword pair exists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_head.html#head-check-if-a-a-url-keyword-pair-s-timeline-exists">HEAD check if a a URL/Keyword pair&#8217;s timeline exists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_post.html">POST Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_put.html">PUT Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranktracker_api_delete.html">DELETE requests</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="security">
+<h1>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h1>
+<p>The WhooshTraffic backend (which includes the API) is served entirely
+over <tt class="docutils literal"><span class="pre">https</span></tt>. Any requests to
+<tt class="docutils literal"><span class="pre">http://secure.whooshtraffic.com/ranktracker/...</span></tt> will result in a permanent
+redirection to the application being served over <tt class="docutils literal"><span class="pre">https</span></tt>. In such a
+case, if you attempt to request anything from the API on <tt class="docutils literal"><span class="pre">http</span></tt>, the
+request will be redirected to the primary login page and return the
+XHTML content.</p>
+<p>Whenever possible, the user agent <em>should absolutely</em> check the
+validity of the server&#8217;s certificate to ensure communication is not
+being intercepted by a ManInTheMiddle with a self signed certificate.</p>
+<p>Python&#8217;s urllib2 doesn&#8217;t provide an easy way to configure this,
+although the socket library does. Following is an example of a url
+opener that will check the validity of the server certificate against
+a certificate bundle (PEM format):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">buildValidatingOpener</span><span class="p">(</span><span class="n">ca_certs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build an opener with a given certs bundle and validate the ssl connection.</span>
+
+<span class="sd">    @author: http://atlee.ca/blog/2011/02/10/verifying-https-python</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">class</span> <span class="nc">VerifiedHTTPSConnection</span><span class="p">(</span><span class="n">httplib</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="c"># Overrides the version in httplib so that we do certificate verification</span>
+            <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">create_connection</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">),</span>
+                                            <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tunnel_host</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">sock</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tunnel</span><span class="p">()</span>
+
+            <span class="c"># Wrap the socket using verification with the root certs in trusted_root_certs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">key_file</span><span class="p">,</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">cert_file</span><span class="p">,</span>
+                                        <span class="n">cert_reqs</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">CERT_REQUIRED</span><span class="p">,</span>
+                                        <span class="n">ca_certs</span><span class="o">=</span><span class="n">ca_certs</span><span class="p">,</span>
+                                        <span class="p">)</span>
+
+    <span class="c"># Wraps https connections with ssl certificate verification</span>
+    <span class="k">class</span> <span class="nc">VerifiedHTTPSHandler</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPSHandler</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection_class</span><span class="o">=</span><span class="n">VerifiedHTTPSConnection</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">specialized_conn_class</span> <span class="o">=</span> <span class="n">connection_class</span>
+            <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPSHandler</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">https_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">specialized_conn_class</span><span class="p">,</span> <span class="n">req</span><span class="p">)</span>
+
+    <span class="n">https_handler</span> <span class="o">=</span> <span class="n">VerifiedHTTPSHandler</span><span class="p">()</span>
+    <span class="n">url_opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">https_handler</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">url_opener</span>
+
+<span class="n">opener</span> <span class="o">=</span> <span class="n">buildValidatingOpener</span><span class="p">(</span><span class="s">&quot;/path/to/cert-bundle.pem&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="authorization">
+<h1>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h1>
+<p>Authorization with the WhooshTraffic API is simple (this applies to
+all available API&#8217;s); it requires credentials to be sent <tt class="docutils literal"><span class="pre">base64</span></tt>
+encoded using the <a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#14.8">HTTP Basic Authorization</a>
+header.</p>
+<p>An example using Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Assuming these to be a valid login/key</span>
+<span class="n">login</span> <span class="o">=</span> <span class="s">&quot;4f//y1YFy5PpFLW&quot;</span>
+<span class="n">key</span>   <span class="o">=</span> <span class="s">&quot;GrSCMg45heb7Y.IK.iogIOeQAi2C4yb./iPT6hnZ5UZwpTS1z4qWu&quot;</span>
+
+<span class="c"># Format and b64encode according to 14.8</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">login</span><span class="o">+</span><span class="s">&#39;:&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">)</span>
+
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Accept&#39;</span><span class="p">,</span> <span class="s">&#39;application/vnd.whoosh.api+json&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Range&#39;</span><span class="p">,</span> <span class="s">&#39;offset=0&#39;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Please note, the term &#8220;Basic &#8221; (with a trailing space) must come
+before the base64 encoded credentials! If not, the server will reject
+the attempt returning a <tt class="docutils literal"><span class="pre">500</span> <span class="pre">Server</span> <span class="pre">Error</span></tt> response.</p>
+<p>If you send an incorrectly formatted authorization header, or none,
+the server will return a <tt class="docutils literal"><span class="pre">400</span> <span class="pre">Bad</span> <span class="pre">Request</span></tt>; if you send credentials
+that cannot be authenticated the server will return a <tt class="docutils literal"><span class="pre">401</span>
+<span class="pre">Unauthorized</span></tt>; and if you send valid credentials but are requesting a
+resource that does not belong to you the server will return a <tt class="docutils literal"><span class="pre">404</span>
+<span class="pre">Not</span> <span class="pre">Found</span></tt> response.</p>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="index.html">API</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ranktracker_api.html">Rank Tracker API Documentation</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2011, Whoosh Traffic!.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DELETE removing a URL/Keyword pair &mdash; Whoosh Traffic! API v2.0 documentation</title>
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="Whoosh Traffic! API v2.0 documentation" href="index.html" />
+    <link rel="up" title="Rank Tracker API Documentation" href="ranktracker_api.html" />
+    <link rel="prev" title="PUT editing/replacing a URL/Keyword pair" href="ranktracker_api_put.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Whoosh Traffic! API v2.0 documentation</span></a></h1>
+        <h2 class="heading"><span>DELETE removing a URL/Keyword pair</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="ranktracker_api_put.html">PUT editing/replacing a URL/Keyword pair</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="delete-removing-a-url-keyword-pair">
+<h1>DELETE removing a URL/Keyword pair<a class="headerlink" href="#delete-removing-a-url-keyword-pair" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for the DELETE method is
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/{id}</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">{id}</span></tt> is the unique ID retreived from a GET all or GET one
+operation. If the item doesn&#8217;t exist or doesn&#8217;t belong to you, the
+server will return a <tt class="docutils literal"><span class="pre">404</span> <span class="pre">Not</span> <span class="pre">Found</span></tt> error code. This API method
+only supports deleting one item at a time.</p>
+<p>If the DELETE request succeeds, the server will return a <tt class="docutils literal"><span class="pre">204</span> <span class="pre">No</span>
+<span class="pre">Content</span></tt> response with a zero length body.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># We&#39;ve already setup an SSL verifying opener</span>
+<span class="o">...</span>
+<span class="c"># Assuming these to be a valid login/key</span>
+<span class="n">login</span> <span class="o">=</span> <span class="s">&quot;Rm7YCcTm12rHcrQ&quot;</span>
+<span class="n">key</span>   <span class="o">=</span> <span class="s">&quot;UKBWgXO1YPPItM5Rs8vq1uO5g2YKcvlqQO9n9XtBF1AE1rRofPUk2&quot;</span>
+
+<span class="c"># Format and b64encode according to 14.8</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">login</span><span class="o">+</span><span class="s">&#39;:&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">)</span>
+
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/938&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;Authorization&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span>
+<span class="n">req</span><span class="o">.</span><span class="n">get_method</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s">&#39;DELETE&#39;</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="ranktracker_api_put.html">PUT editing/replacing a URL/Keyword pair</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2011, Whoosh Traffic!.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Caveats and Known Issues &mdash; Whoosh Traffic! Ranktracker 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="Whoosh Traffic! Ranktracker 1.0 documentation" href="index.html" />
+    <link rel="next" title="Ranktracker Results Filters" href="filters.html" />
+    <link rel="prev" title="The Whoosh Traffic! Ranktracker" href="index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Whoosh Traffic! Ranktracker 1.0 documentation</span></a></h1>
+        <h2 class="heading"><span>Caveats and Known Issues</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="index.html">The Whoosh Traffic! Ranktracker</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="filters.html">Ranktracker Results Filters</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="caveats-and-known-issues">
+<h1>Caveats and Known Issues<a class="headerlink" href="#caveats-and-known-issues" title="Permalink to this headline">¶</a></h1>
+<p>Once in a while, you may notice discrepancies in your ranktracker
+results, these discrepancies are caused by a few factors. Here are the
+predominant factors:</p>
+<ol class="arabic simple">
+<li>Personalization based on search history, whether you&#8217;re logged in, &amp;c...</li>
+<li>Datacenter geo-location and proximity to the requesting IP</li>
+<li>Geographical location of the requesting IP</li>
+</ol>
+<p>Number (1) we can fix by making the search request &#8220;anonymous&#8221; but
+that only helps with one aspect of it. The other two (2)(3) factors
+are very difficult to resolve and only have one possible solution - a
+solution that requires the user to have their own servers (or to rent
+them from us) in the area that they are in, or their clients are in
+(to mimic the requests coming from the same location to defeat the
+geolocation and proximity issues). We have not implemented this yet
+but may do so if demand for it increases.</p>
+<div class="admonition-please-note admonition">
+<p class="first admonition-title">Please note...</p>
+<p class="last">That when you are logged in, personalization is &#8220;turned on&#8221; which
+means you will definitely see discrepancies - what you want to do
+is log out of Google so that you can see what the results look like
+without your search history, ad click history, preferences,
+&amp;c... being factored in by Google.</p>
+</div>
+<div class="section" id="what-kind-of-discrepancies-are-we-talking-about">
+<h2>What kind of discrepancies are we talking about?<a class="headerlink" href="#what-kind-of-discrepancies-are-we-talking-about" title="Permalink to this headline">¶</a></h2>
+<p>In some mild cases, during a search you will see your URL a few
+positions different from what the Ranktracker sees.</p>
+<p>In less mild cases your URL will be on different pages (either
+increasing in rank, or decreasing).</p>
+<p>Extreme cases are those in which the URL is ranking for you when you
+search and <em>not ranking at all</em> for the results the Ranktracker
+sees. This usually is a result of both geolocation and the index that
+the specific data center has lagging behind (or it might just entirely
+be a geolocation issue).</p>
+</div>
+<div class="section" id="what-to-do-about-it">
+<h2>What to do about it?<a class="headerlink" href="#what-to-do-about-it" title="Permalink to this headline">¶</a></h2>
+<p>There isn&#8217;t really much you can do about it - but for those that have
+discrepancies, use the results as a trending tool if you aren&#8217;t
+getting exact results.</p>
+<p>If you wish to double check what the Rank Tracker is seeing, you can
+click on the &#8220;Details&#8221; button to the right on the row of the pair you
+wish to inspect. On that page you will see a graph and to the right of
+the graph is a button named &#8220;Last Rank Cache&#8221;, clicking that will give
+you the stored page cache we have that the rank tracker saw when it
+tracked your item.</p>
+</div>
+<div class="section" id="how-google-search-works">
+<h2>How Google Search works<a class="headerlink" href="#how-google-search-works" title="Permalink to this headline">¶</a></h2>
+<p>Google search results are <em>unique</em>.</p>
+<p>The main reason is that there are many variables that Google looks at when returning your results. It uses past searches, region, your browser type, what ads you&#8217;ve clicked on, where you shop, <a class="reference external" href="https://accounts.google.com/b/0/IssuedAuthSubTokens?hl=en">third-party accounts</a> you&#8217;ve authorized, browsing history and <em>most interesting</em> - <a class="reference external" href="https://www.google.com/settings/ads/onweb/?sig=ACi0TCg3YhvuNCyJMHsR2HOYROFG21bx3TJpQJus9VMbcuMUSjvhILaBccXsjs_GTOg-n64eUmepBwaNJ_erFQPLSfXIP1mFSQeRAT9ppSZHjO0tVpNRaWDTMFa8RBew8CCl9iZbklBvghsmRJLtbPTWIrDtCa8mTdhVMDdU132ayDzSKS-8ZvVxEIL6x3ggUEZm4FsK9eAlNT94WD3ImXrqclUVRW1Low&amp;hl=en">inferred interests and demographics</a>. You can test this by performing a search and then signing out of Google, closing the tab and opening a new one to start a new session then doing the search again noting how the results change.</p>
+<p>One variable you can&#8217;t control is which data center is returning the results. There are a few in the US and some internationally. Which one you hit is random and varies with each use. Data centers are consistent with one another but a few are different because they are not using the same algorithm.</p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="index.html">The Whoosh Traffic! Ranktracker</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="filters.html">Ranktracker Results Filters</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Whoosh Traffic!.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

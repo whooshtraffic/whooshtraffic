@@ -1,0 +1,113 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Rank Tracker API Documentation &mdash; Whoosh Traffic! API v2.0 documentation</title>
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="Whoosh Traffic! API v2.0 documentation" href="index.html" />
+    <link rel="up" title="API Documentation" href="api.html" />
+    <link rel="next" title="GET a single URL/Keyword pair" href="ranktracker_api_get.html" />
+    <link rel="prev" title="API Documentation" href="api.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Whoosh Traffic! API v2.0 documentation</span></a></h1>
+        <h2 class="heading"><span>Rank Tracker API Documentation</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="api.html">API Documentation</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ranktracker_api_get.html">GET a single URL/Keyword pair</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="rank-tracker-api-documentation">
+<h1>Rank Tracker API Documentation<a class="headerlink" href="#rank-tracker-api-documentation" title="Permalink to this headline">¶</a></h1>
+<p>All of these examples use the custom Python urllib2 opener that
+validates the server&#8217;s ssl certificate against a local PEM bundle
+<a class="reference internal" href="api.html"><em>API Documentation</em></a>. It is highly recommended that you validate the server&#8217;s
+certificates. Examples in other languages (Ruby, PHP, etc...)  can be
+easily found on the internet and in the documentation of the
+respective languages.</p>
+<p>In addition to the authorization header, the API requires you to
+specify (exception being PUT, POST, and DELETE) the content type you
+wish to accept; the Whoosh Traffic API only supports returning XML or
+JSON. The Accept headers for these two content types are vendor
+specific, these are the strings you would use (see examples too):</p>
+<div class="highlight-python"><pre>Accept: application/vnd.whoosh.api+json</pre>
+</div>
+<p>or:</p>
+<div class="highlight-python"><pre>Accept: application/vnd.whoosh.api+xml</pre>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html">GET a single URL/Keyword pair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-all-or-a-range-of-configured-url-keyword-pairs">GET all (or a range of) configured URL/Keyword pairs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-all-or-a-range-of-configured-ranking-url-keyword-pairs">GET all (or a range of) configured <em>ranking</em> URL/Keyword pairs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-all-or-a-range-of-configured-unranked-url-keyword-pairs">GET all (or a range of) configured <em>unranked</em> URL/Keyword pairs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-a-pair-s-timeline">GET a pair&#8217;s timeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-a-pair-s-settings">GET a pair&#8217;s settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-a-count-of-all-your-pairs">GET a count of all your pairs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-a-count-of-all-your-ranking-pairs">GET a count of all your ranking pairs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-a-count-of-all-your-unranking-pairs">GET a count of all your unranking pairs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-a-pair-s-latest-page-cache-of-the-rank">GET a pair&#8217;s latest page cache of the rank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-a-checksum-of-all-your-pairs">GET a checksum of all your pairs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-a-checksum-for-a-single-pair">GET a checksum for a single pair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-a-checksum-for-all-ranked-pairs">GET a checksum for all ranked pairs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_get.html#get-a-checksum-for-all-unranked-pairs">GET a checksum for all unranked pairs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_head.html">HEAD check if a URL/Keyword pair exists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_head.html#head-check-if-a-a-url-keyword-pair-s-timeline-exists">HEAD check if a a URL/Keyword pair&#8217;s timeline exists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_post.html">POST Requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_put.html">PUT Requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranktracker_api_delete.html">DELETE requests</a></li>
+</ul>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="api.html">API Documentation</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ranktracker_api_get.html">GET a single URL/Keyword pair</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2011, Whoosh Traffic!.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

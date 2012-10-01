@@ -1,0 +1,47 @@
+| ISO 639-2 Code | Language Name         |
+|----------------+-----------------------|
+| en ........... | English               |
+| ar ........... | Arabic                |
+| hy ........... | Armenian              |
+| be ........... | Belarusian            |
+| bg ........... | Bulgarian             |
+| ca ........... | Catalan               |
+| zh-CN ........ | Chinese (Simplified)  |
+| zh-TW ........ | Chinese (Traditional) |
+| hr ........... | Croatian              |
+| cs ........... | Czech                 |
+| da ........... | Danish                |
+| nl ........... | Dutch                 |
+| eo ........... | Esperanto             |
+| et ........... | Estonian              |
+| tl ........... | Filipino              |
+| fi ........... | Finnish               |
+| fr ........... | French                |
+| de ........... | German                |
+| el ........... | Greek                 |
+| iw ........... | Hebrew                |
+| hu ........... | Hungarian             |
+| is ........... | Icelandic             |
+| id ........... | Indonesian            |
+| it ........... | Italian               |
+| ja ........... | Japanese              |
+| ko ........... | Korean                |
+| lv ........... | Latvian               |
+| lt ........... | Lithuanian            |
+| no ........... | Norwegian             |
+| fa ........... | Persian               |
+| pl ........... | Polish                |
+| pt ........... | Portuguese            |
+| ro ........... | Romanian              |
+| ru ........... | Russian               |
+| sr ........... | Serbian               |
+| sk ........... | Slovak                |
+| sl ........... | Slovenian             |
+| es ........... | Spanish               |
+| sw ........... | Swahili               |
+| sv ........... | Swedish               |
+| th ........... | Thai                  |
+| tr ........... | Turkish               |
+| uk ........... | Ukrainian             |
+| vi ........... | Vietnamese            |
+| af ........... | Afrikaans             |

@@ -1,0 +1,128 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>HEAD check if a URL/Keyword pair exists &mdash; Whoosh Traffic! API v2.0 documentation</title>
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="Whoosh Traffic! API v2.0 documentation" href="index.html" />
+    <link rel="up" title="Rank Tracker API Documentation" href="ranktracker_api.html" />
+    <link rel="next" title="POST adding a URL/Keyword pair for tracking" href="ranktracker_api_post.html" />
+    <link rel="prev" title="GET a single URL/Keyword pair" href="ranktracker_api_get.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Whoosh Traffic! API v2.0 documentation</span></a></h1>
+        <h2 class="heading"><span>HEAD check if a URL/Keyword pair exists</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="ranktracker_api_get.html">GET a single URL/Keyword pair</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ranktracker_api_post.html">POST adding a URL/Keyword pair for tracking</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="head-check-if-a-url-keyword-pair-exists">
+<h1>HEAD check if a URL/Keyword pair exists<a class="headerlink" href="#head-check-if-a-url-keyword-pair-exists" title="Permalink to this headline">¶</a></h1>
+<p>This method will tell you if the pair resource exists or not. It
+returns a zero-length body but it will return the proper HTTP status
+codes.</p>
+<p>The endpoint path for this API is
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/{id}</span></tt></p>
+<p>If a pair exists for the given resource, a 200 OK status code will be
+returned.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Assuming these to be a valid login/key</span>
+<span class="n">login</span> <span class="o">=</span> <span class="s">&quot;Rm7YCcTm12rHcrQ&quot;</span>
+<span class="n">key</span>   <span class="o">=</span> <span class="s">&quot;UKBWgXO1YPPItM5Rs8vq1uO5g2YKcvlqQO9n9XtBF1AE1rRofPUk2&quot;</span>
+
+<span class="c"># Format and b64encode according to 14.8</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">login</span><span class="o">+</span><span class="s">&#39;:&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">)</span>
+
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/935&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">get_method</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s">&#39;HEAD&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="head-check-if-a-a-url-keyword-pair-s-timeline-exists">
+<h1>HEAD check if a a URL/Keyword pair&#8217;s timeline exists<a class="headerlink" href="#head-check-if-a-a-url-keyword-pair-s-timeline-exists" title="Permalink to this headline">¶</a></h1>
+<p>This method will tell you if a timeline for the pair resource exists
+or not. It returns a zero-length body but it will return the proper
+HTTP status codes.</p>
+<p>The endpoint path for this API is
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/{id}/timeline</span></tt></p>
+<p>You may also provide an engine argument in the <tt class="docutils literal"><span class="pre">Range</span></tt> header, the
+only two search engines supported at this time are Google and Bing:</p>
+<div class="highlight-python"><pre>Range: engine=google</pre>
+</div>
+<p>If no engine argument is supplied it will check if a timeline exists
+with both engines.</p>
+<p>If a timeline exists for the given pair resource, a 200 OK status code
+will be returned.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Assuming these to be a valid login/key</span>
+<span class="n">login</span> <span class="o">=</span> <span class="s">&quot;Rm7YCcTm12rHcrQ&quot;</span>
+<span class="n">key</span>   <span class="o">=</span> <span class="s">&quot;UKBWgXO1YPPItM5Rs8vq1uO5g2YKcvlqQO9n9XtBF1AE1rRofPUk2&quot;</span>
+
+<span class="c"># Format and b64encode according to 14.8</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">login</span><span class="o">+</span><span class="s">&#39;:&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">)</span>
+
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/935/timeline&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Range&#39;</span><span class="p">,</span> <span class="s">&#39;engine=google&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">get_method</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s">&#39;HEAD&#39;</span>
+</pre></div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="ranktracker_api_get.html">GET a single URL/Keyword pair</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ranktracker_api_post.html">POST adding a URL/Keyword pair for tracking</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2011, Whoosh Traffic!.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

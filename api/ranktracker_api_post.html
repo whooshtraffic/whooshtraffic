@@ -1,0 +1,172 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>POST adding a URL/Keyword pair for tracking &mdash; Whoosh Traffic! API v2.0 documentation</title>
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="Whoosh Traffic! API v2.0 documentation" href="index.html" />
+    <link rel="up" title="Rank Tracker API Documentation" href="ranktracker_api.html" />
+    <link rel="next" title="PUT editing/replacing a URL/Keyword pair" href="ranktracker_api_put.html" />
+    <link rel="prev" title="HEAD check if a URL/Keyword pair exists" href="ranktracker_api_head.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Whoosh Traffic! API v2.0 documentation</span></a></h1>
+        <h2 class="heading"><span>POST adding a URL/Keyword pair for tracking</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="ranktracker_api_head.html">HEAD check if a URL/Keyword pair exists</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ranktracker_api_put.html">PUT editing/replacing a URL/Keyword pair</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="post-adding-a-url-keyword-pair-for-tracking">
+<h1>POST adding a URL/Keyword pair for tracking<a class="headerlink" href="#post-adding-a-url-keyword-pair-for-tracking" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for the POST method is
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs</span></tt></p>
+<p>This API method only supports adding one item at a time.</p>
+<p>POST requests must be accompanied by an <tt class="docutils literal"><span class="pre">Accept</span></tt> header telling the
+server what format you want any possible error messages and/or the
+results returned as:</p>
+<div class="highlight-python"><pre>Accept: application/vnd.whoosh.api+json</pre>
+</div>
+<p>or:</p>
+<div class="highlight-python"><pre>Accept: application/vnd.whoosh.api+xml</pre>
+</div>
+<p>It requires an XML document of this form:</p>
+<div class="highlight-python"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;pair&gt;
+  &lt;url&gt;http://someurl.com&lt;/url&gt;
+  &lt;keyword&gt;a keyword&lt;/keyword&gt;
+&lt;/pair&gt;</pre>
+</div>
+<ul class="simple">
+<li>The URL field must be a valid URL. If no URL scheme (&#8220;http&#8221; or &#8220;https&#8221;) is provided, we will assume &#8220;http&#8221;.</li>
+<li>The URL field will also be validated for any HTTP errors, in particular, any of the 30x response codes (except for 302 and 304), 40x level codes, and whether the hostname is known or not.</li>
+</ul>
+<p>If you wish to change the locale (spoof the actual cookie location it comes from) you can supply this element:</p>
+<div class="highlight-python"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;pair&gt;
+  &lt;url&gt;http://someurl.com&lt;/url&gt;
+  &lt;keyword&gt;a keyword&lt;/keyword&gt;
+  &lt;locale&gt;87505&lt;/locale&gt;
+&lt;/pair&gt;</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The locale value <em>must be</em> a five digit zipcode. Only USA postal codes are supported at this time (we are working on international cookie spoofing).</p>
+</div>
+<p>If you do not supply a custome locale value, we will attempt to use the zipcode attached to your billing address. If we do not have a nearest matching value, then no locale will be used at all.</p>
+<p>If you wish to change the TLD (google.com, google.co.uk, google.com.hk, &amp;c...), the language, or the country you can specify (all optional) settings - any setting (or all of them) NOT included in the XML body will assume the default. The defaults are as follows:</p>
+<ul class="simple">
+<li>Country default is <strong>US</strong></li>
+<li>Language default is <strong>en</strong></li>
+<li>TLD default is <strong>.com</strong></li>
+</ul>
+<p>Lists for accepted settings:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://secure.whooshtraffic.com/static/documentation/google_tlds.txt">List of accepted TLD domains</a></li>
+<li><a class="reference external" href="https://secure.whooshtraffic.com/static/documentation/google_accepted_countries.txt">List of accepted country ISO2 codes</a></li>
+<li><a class="reference external" href="https://secure.whooshtraffic.com/static/documentation/google_accepted_languages.txt">List of accepted language ISO2 codes</a></li>
+</ul>
+<p><em>Note: Bing has limited support for international conventions, these specific settings ONLY apply to Google.</em></p>
+<p>An example of adding a pair with different settings:</p>
+<div class="highlight-python"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;pair&gt;
+  &lt;url&gt;http://someurl.com&lt;/url&gt;
+  &lt;keyword&gt;a keyword&lt;/keyword&gt;
+  &lt;country&gt;GB&lt;/country&gt;
+  &lt;tld&gt;.co.uk&lt;/tld&gt;
+&lt;/pair&gt;</pre>
+</div>
+<p>Any authorization errors will come back with an HTTP response code and a plaintext body. Any errors occurring with your request following authorization will come back as an XML document:</p>
+<div class="highlight-python"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;error&gt;
+  &lt;message&gt;Some error message&lt;/message&gt;
+&lt;/error&gt;</pre>
+</div>
+<p>If the POST request succeeds, the server will return a <tt class="docutils literal"><span class="pre">201</span> <span class="pre">Created</span></tt> response (a location header with the URI of the pair is also included) with an XML document body containing the unique ID of the pair item created:</p>
+<div class="highlight-python"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;success&gt;
+  &lt;pairid&gt;939&lt;/pairid&gt;
+&lt;/success&gt;</pre>
+</div>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Assuming these to be a valid login/key</span>
+<span class="n">login</span> <span class="o">=</span> <span class="s">&quot;Rm7YCcTm12rHcrQ&quot;</span>
+<span class="n">key</span>   <span class="o">=</span> <span class="s">&quot;UKBWgXO1YPPItM5Rs8vq1uO5g2YKcvlqQO9n9XtBF1AE1rRofPUk2&quot;</span>
+
+<span class="c"># Format and b64encode according to 14.8</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">login</span><span class="o">+</span><span class="s">&#39;:&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="s">&lt;pair&gt;</span>
+<span class="s">  &lt;url&gt;http://ixmat.us&lt;/url&gt;</span>
+<span class="s">  &lt;keyword&gt;parnell springmeyer&lt;/keyword&gt;</span>
+<span class="s">&lt;/pair&gt;</span>
+<span class="s">&quot;&quot;&quot;</span>
+
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;Authorization&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span>
+<span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;Accept&#39;</span><span class="p">]</span>         <span class="o">=</span> <span class="s">&#39;application/vnd.whoosh.api+xml&#39;</span>
+<span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="n">req</span><span class="o">.</span><span class="n">data</span>                      <span class="o">=</span> <span class="n">data</span>
+<span class="n">req</span><span class="o">.</span><span class="n">get_method</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s">&#39;POST&#39;</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="ranktracker_api_head.html">HEAD check if a URL/Keyword pair exists</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ranktracker_api_put.html">PUT editing/replacing a URL/Keyword pair</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2011, Whoosh Traffic!.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

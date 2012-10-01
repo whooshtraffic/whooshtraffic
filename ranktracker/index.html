@@ -1,0 +1,128 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Whoosh Traffic! Ranktracker &mdash; Whoosh Traffic! Ranktracker 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="Whoosh Traffic! Ranktracker 1.0 documentation" href="#" />
+    <link rel="next" title="Caveats and Known Issues" href="caveats.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="#">
+          <span>Whoosh Traffic! Ranktracker 1.0 documentation</span></a></h1>
+        <h2 class="heading"><span>The Whoosh Traffic! Ranktracker</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="#">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="caveats.html">Caveats and Known Issues</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="the-whoosh-traffic-ranktracker">
+<h1>The Whoosh Traffic! Ranktracker<a class="headerlink" href="#the-whoosh-traffic-ranktracker" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="caveats.html">Caveats and Known Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caveats.html#what-kind-of-discrepancies-are-we-talking-about">What kind of discrepancies are we talking about?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caveats.html#what-to-do-about-it">What to do about it?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caveats.html#how-google-search-works">How Google Search works</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings.html">Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#email-frequency">Email Frequency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#domain-scan">Domain Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#removed-scan">Removed Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#filter-management">Filter Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#pdf-white-labeling">PDF White Labeling</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition-looking-for-the admonition">
+<p class="first admonition-title">Looking for the...</p>
+<p class="last"><a class="reference external" href="https://secure.whooshtraffic.com/static/documentation/api/">Ranktracker API documentation</a>?</p>
+</div>
+</div>
+<div class="section" id="how-it-works">
+<h1>How it Works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h1>
+<p>The Whoosh Traffic! Ranktracker tracks a configured URL/keyword pair
+in a search engine&#8217;s index by submitting a search query to that
+engine&#8217;s search page just as a user would (using any advanced
+settings) and scanning each page of results until a match is found,
+the maximum depth in the results for the account is reached, or the
+end of the results is reached.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Ranktracker only supports Google and Bing. Yahoo! search has been subsidized by Bing.</p>
+</div>
+<p>If a match is found, we store its rank position and calculate its
+change from the previous known rank (if it has one). The rank and
+change are calculated on a &#8220;nearing-one&#8221; scale as the first position
+in the SERP set is also the &#8220;highest&#8221; rank.</p>
+<p>When a URL/keyword pair is first created the ranktracker will do two
+things:</p>
+<ol class="arabic simple">
+<li>Check to see if it is even in the index, if it is the rank is stored.</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>If not, and there is a &#8220;www&#8221; prefixing the URL it will be stripped and re-tracked; if a match is found with the stripped version then a <strong>new</strong> URL/keyword pair is created in place of that one and a reference to the new one is made. <em>This same process is repeated for a URL that isn&#8217;t ranking but has no &#8220;www&#8221; prefixing it, in this case a &#8220;www&#8221; prefixed version is checked for.</em></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>If the URL is a <em>domain only</em> ie: <tt class="docutils literal"><span class="pre">http://mydomain.com</span></tt> instead of: <tt class="docutils literal"><span class="pre">http://mydomain.com/some/path</span></tt> URL, then the ranktracker will scan for any deep links containing that exact domain (if there is a subdomain, that is considered part of the domain!) in the SERPs for the given keyword.</li>
+</ol>
+<p>After the initial track (1) and scan (2) - the pair will be queued in the daily tracking schedule and the weekly scanning schedule. The daily tracker runs once a day at midnight and the weekly scanner runs at midnight on Sunday.</p>
+<p>The scanner automatically adds in URL&#8217;s it finds so the tracker will track them in the daily schedule. This, however, can lead to result pollution - when you delete any URL/keyword pair from the interface it will also mark it as &#8220;no_scan&#8221; which means that if the URL was added by the scanner and you deleted it, the scanner will never add that URL again.</p>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="#">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="caveats.html">Caveats and Known Issues</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Whoosh Traffic!.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

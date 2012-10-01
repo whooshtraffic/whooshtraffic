@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>GET a single URL/Keyword pair &mdash; Whoosh Traffic! API v2.0 documentation</title>
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="Whoosh Traffic! API v2.0 documentation" href="index.html" />
+    <link rel="up" title="Rank Tracker API Documentation" href="ranktracker_api.html" />
+    <link rel="next" title="HEAD check if a URL/Keyword pair exists" href="ranktracker_api_head.html" />
+    <link rel="prev" title="Rank Tracker API Documentation" href="ranktracker_api.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Whoosh Traffic! API v2.0 documentation</span></a></h1>
+        <h2 class="heading"><span>GET a single URL/Keyword pair</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="ranktracker_api.html">Rank Tracker API Documentation</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ranktracker_api_head.html">HEAD check if a URL/Keyword pair exists</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="get-a-single-url-keyword-pair">
+<h1>GET a single URL/Keyword pair<a class="headerlink" href="#get-a-single-url-keyword-pair" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API is
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/{id}</span></tt></p>
+<p>GET one and GET all require an <tt class="docutils literal"><span class="pre">Accept</span></tt> header of either these two
+types:</p>
+<div class="highlight-python"><pre>Accept: application/vnd.whoosh.api+json</pre>
+</div>
+<p>or:</p>
+<div class="highlight-python"><pre>Accept: application/vnd.whoosh.api+xml</pre>
+</div>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Assuming these to be a valid login/key</span>
+<span class="n">login</span> <span class="o">=</span> <span class="s">&quot;Rm7YCcTm12rHcrQ&quot;</span>
+<span class="n">key</span>   <span class="o">=</span> <span class="s">&quot;UKBWgXO1YPPItM5Rs8vq1uO5g2YKcvlqQO9n9XtBF1AE1rRofPUk2&quot;</span>
+
+<span class="c"># Format and b64encode according to 14.8</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">login</span><span class="o">+</span><span class="s">&#39;:&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">)</span>
+
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/935&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Accept&#39;</span><span class="p">,</span> <span class="s">&#39;application/vnd.whoosh.api+json&#39;</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">decoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The JSON result:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">935</span><span class="p">,</span> <span class="s">&quot;keyword&quot;</span><span class="p">:</span> <span class="s">&quot;parnell springmeyer&quot;</span><span class="p">,</span> <span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="s">&quot;http://ixmat.us&quot;</span><span class="p">,</span> <span class="s">&quot;modified&quot;</span><span class="p">:</span> <span class="mi">1303899644</span><span class="p">,</span> <span class="s">&quot;locale&quot;</span> <span class="p">:</span> <span class="n">null</span><span class="p">,</span> <span class="s">&quot;created&quot;</span><span class="p">:</span> <span class="mi">1303892888</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-all-or-a-range-of-configured-url-keyword-pairs">
+<h1>GET all (or a range of) configured URL/Keyword pairs<a class="headerlink" href="#get-all-or-a-range-of-configured-url-keyword-pairs" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs</span></tt></p>
+<p>GET one and GET all require an <tt class="docutils literal"><span class="pre">Accept</span></tt> header of either these two
+types:</p>
+<div class="highlight-python"><pre>Accept: application/vnd.whoosh.api+json</pre>
+</div>
+<p>or:</p>
+<div class="highlight-python"><pre>Accept: application/vnd.whoosh.api+xml</pre>
+</div>
+<p>If you DO NOT specify a <tt class="docutils literal"><span class="pre">Range</span></tt> header this method will return ALL
+of your pairs! If you have a large number of pairs, the response time
+may be slow.</p>
+<p>If you do specify a <tt class="docutils literal"><span class="pre">Range</span></tt> header with an offset argument it will
+return a maximum of 10 results per set. The Range header must be
+supplied in this format:</p>
+<div class="highlight-python"><pre>Range: offset=0</pre>
+</div>
+<p>The offset value can be any number - the API will return a limit of
+ten results from that offset. The response will also return a <tt class="docutils literal"><span class="pre">Link</span></tt>
+header to reference the Previous, Current, and Next positions based on
+the offset you&#8217;ve provided.</p>
+<p>This API method will return ALL pairs regardless of whether they are
+ranking or unranked (not in the SERPs)!! If you wish to return a
+result of <em>only</em> the ranking or unranked pairs, see below for the
+proper methods.</p>
+<p>Each pair item contains the unique ID of the item (used to retrieve
+its timeline, to update it, or to delete it), the configured URL and
+keyword, as well as the datetime created and datetime modified (as a
+Unix epoch timestamp).</p>
+<p>Here is an example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Accept&#39;</span><span class="p">,</span> <span class="s">&#39;application/vnd.whoosh.api+json&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Range&#39;</span><span class="p">,</span>  <span class="s">&#39;offset=0&#39;</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">decoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The JSON result:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[{</span><span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="s">&quot;http://yourdomain.com&quot;</span><span class="p">,</span> <span class="s">&quot;modified&quot;</span><span class="p">:</span> <span class="mi">1321384422</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">18735</span><span class="p">,</span> <span class="s">&quot;keyword&quot;</span><span class="p">:</span> <span class="s">&quot;your keyword1&quot;</span><span class="p">,</span> <span class="s">&quot;locale&quot;</span> <span class="p">:</span> <span class="s">&quot;98726&quot;</span><span class="p">,</span> <span class="s">&quot;created&quot;</span><span class="p">:</span> <span class="mi">1318965959</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="s">&quot;http://yourdomain.com&quot;</span><span class="p">,</span> <span class="s">&quot;modified&quot;</span><span class="p">:</span> <span class="mi">1321383485</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">18736</span><span class="p">,</span> <span class="s">&quot;keyword&quot;</span><span class="p">:</span> <span class="s">&quot;your keyword2&quot;</span><span class="p">,</span> <span class="s">&quot;locale&quot;</span> <span class="p">:</span> <span class="s">&quot;98726&quot;</span><span class="p">,</span> <span class="s">&quot;created&quot;</span><span class="p">:</span> <span class="mi">1318965975</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="s">&quot;http://yourdomain.com&quot;</span><span class="p">,</span> <span class="s">&quot;modified&quot;</span><span class="p">:</span> <span class="mi">1321376887</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">18737</span><span class="p">,</span> <span class="s">&quot;keyword&quot;</span><span class="p">:</span> <span class="s">&quot;your keyword3&quot;</span><span class="p">,</span> <span class="s">&quot;locale&quot;</span> <span class="p">:</span> <span class="s">&quot;98726&quot;</span><span class="p">,</span> <span class="s">&quot;created&quot;</span><span class="p">:</span> <span class="mi">1318965988</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="s">&quot;http://yourdomain.com&quot;</span><span class="p">,</span> <span class="s">&quot;modified&quot;</span><span class="p">:</span> <span class="mi">1321381710</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">18738</span><span class="p">,</span> <span class="s">&quot;keyword&quot;</span><span class="p">:</span> <span class="s">&quot;your keyword4&quot;</span><span class="p">,</span> <span class="s">&quot;locale&quot;</span> <span class="p">:</span> <span class="s">&quot;98726&quot;</span><span class="p">,</span> <span class="s">&quot;created&quot;</span><span class="p">:</span> <span class="mi">1318966006</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="s">&quot;http://yourdomain.com&quot;</span><span class="p">,</span> <span class="s">&quot;modified&quot;</span><span class="p">:</span> <span class="mi">1321381018</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">18739</span><span class="p">,</span> <span class="s">&quot;keyword&quot;</span><span class="p">:</span> <span class="s">&quot;your keyword5&quot;</span><span class="p">,</span> <span class="s">&quot;locale&quot;</span> <span class="p">:</span> <span class="s">&quot;98726&quot;</span><span class="p">,</span> <span class="s">&quot;created&quot;</span><span class="p">:</span> <span class="mi">1318966024</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="s">&quot;http://yourdomain.com&quot;</span><span class="p">,</span> <span class="s">&quot;modified&quot;</span><span class="p">:</span> <span class="mi">1321341601</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">20204</span><span class="p">,</span> <span class="s">&quot;keyword&quot;</span><span class="p">:</span> <span class="s">&quot;your keyword6&quot;</span><span class="p">,</span> <span class="s">&quot;locale&quot;</span> <span class="p">:</span> <span class="s">&quot;98726&quot;</span><span class="p">,</span> <span class="s">&quot;created&quot;</span><span class="p">:</span> <span class="mi">1319296358</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="s">&quot;http://yourdomain.com&quot;</span><span class="p">,</span> <span class="s">&quot;modified&quot;</span><span class="p">:</span> <span class="mi">1321341601</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">20205</span><span class="p">,</span> <span class="s">&quot;keyword&quot;</span><span class="p">:</span> <span class="s">&quot;your keyword7&quot;</span><span class="p">,</span> <span class="s">&quot;locale&quot;</span> <span class="p">:</span> <span class="s">&quot;98726&quot;</span><span class="p">,</span> <span class="s">&quot;created&quot;</span><span class="p">:</span> <span class="mi">1319296383</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="s">&quot;http://yourdomain.com&quot;</span><span class="p">,</span> <span class="s">&quot;modified&quot;</span><span class="p">:</span> <span class="mi">1321383132</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">20206</span><span class="p">,</span> <span class="s">&quot;keyword&quot;</span><span class="p">:</span> <span class="s">&quot;your keyword8&quot;</span><span class="p">,</span> <span class="s">&quot;locale&quot;</span> <span class="p">:</span> <span class="s">&quot;98726&quot;</span><span class="p">,</span> <span class="s">&quot;created&quot;</span><span class="p">:</span> <span class="mi">1319296396</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="s">&quot;http://yourdomain.com&quot;</span><span class="p">,</span> <span class="s">&quot;modified&quot;</span><span class="p">:</span> <span class="mi">1321372078</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">20207</span><span class="p">,</span> <span class="s">&quot;keyword&quot;</span><span class="p">:</span> <span class="s">&quot;your keyword9&quot;</span><span class="p">,</span> <span class="s">&quot;locale&quot;</span> <span class="p">:</span> <span class="s">&quot;98726&quot;</span><span class="p">,</span> <span class="s">&quot;created&quot;</span><span class="p">:</span> <span class="mi">1319296411</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="s">&quot;http://yourdomain.com&quot;</span><span class="p">,</span> <span class="s">&quot;modified&quot;</span><span class="p">:</span> <span class="mi">1321385958</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">20208</span><span class="p">,</span> <span class="s">&quot;keyword&quot;</span><span class="p">:</span> <span class="s">&quot;your keyword10&quot;</span><span class="p">,</span> <span class="s">&quot;locale&quot;</span> <span class="p">:</span> <span class="s">&quot;98726&quot;</span><span class="p">,</span> <span class="s">&quot;created&quot;</span><span class="p">:</span> <span class="mi">1319296425</span><span class="p">}]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-all-or-a-range-of-configured-ranking-url-keyword-pairs">
+<h1>GET all (or a range of) configured <em>ranking</em> URL/Keyword pairs<a class="headerlink" href="#get-all-or-a-range-of-configured-ranking-url-keyword-pairs" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/ranked</span></tt></p>
+<p>The result set will be all of the URL/Keyword pairs that the rank
+tracker is actively tracking in the SERPs.</p>
+<p>You may also provide an engine argument in the <tt class="docutils literal"><span class="pre">Range</span></tt> header, the
+only two search engines supported at this time are Google and Bing:</p>
+<div class="highlight-python"><pre>Range: engine=google</pre>
+</div>
+<p>If no engine argument is supplied we will return pairs that are
+ranking for BOTH Bing and Google</p>
+<p>The result set will not specify the engine, the programmer must keep
+track of this in their application when passing the engine argument in
+the <tt class="docutils literal"><span class="pre">Range</span></tt> header. This is because we have only one pair and search
+both engines based on the pair, then store which result is matched to
+which engine in the results - so we don&#8217;t have any correlation between
+the two (except when returning results as is the case with the
+GET_timeline method).</p>
+<p>The header arguments and output of this API method is precisely the
+same as that of the generic GET ALL above. Refer to the section above
+for requirements regarding the <tt class="docutils literal"><span class="pre">Accept</span></tt> and <tt class="docutils literal"><span class="pre">Range</span></tt> headers.</p>
+</div>
+<div class="section" id="get-all-or-a-range-of-configured-unranked-url-keyword-pairs">
+<h1>GET all (or a range of) configured <em>unranked</em> URL/Keyword pairs<a class="headerlink" href="#get-all-or-a-range-of-configured-unranked-url-keyword-pairs" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/unranked</span></tt></p>
+<p>The result set will be all of the URL/Keyword pairs that the rank
+tracker has either not found at all or has been unable to any longer
+find in the SERPs.</p>
+<p>You may also provide an engine argument in the <tt class="docutils literal"><span class="pre">Range</span></tt> header, the
+only two search engines supported at this time are Google and Bing:</p>
+<div class="highlight-python"><pre>Range: engine=google</pre>
+</div>
+<p>If no engine argument is supplied we will return pairs that are
+not ranking for BOTH Bing and Google</p>
+<p>The result set will not specify the engine, the programmer must keep
+track of this in their application when passing the engine argument in
+the <tt class="docutils literal"><span class="pre">Range</span></tt> header. This is because we have only one pair and search
+both engines based on the pair, then store which result is matched to
+which engine in the results - so we don&#8217;t have any correlation between
+the two (except when returning results as is the case with the
+GET_timeline method).</p>
+<p>The header arguments and output of this API method is precisely the
+same as that of the generic GET ALL above. Refer to the section above
+for requirements regarding the <tt class="docutils literal"><span class="pre">Accept</span></tt> and <tt class="docutils literal"><span class="pre">Range</span></tt> headers.</p>
+</div>
+<div class="section" id="get-a-pair-s-timeline">
+<h1>GET a pair&#8217;s timeline<a class="headerlink" href="#get-a-pair-s-timeline" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/{id}/timeline</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">{id}</span></tt> is the unique ID of the pair retreived from either a GET all or
+GET one request.</p>
+<p>If you DO NOT specify a <tt class="docutils literal"><span class="pre">Range</span></tt> header this method will default to
+returning one month&#8217;s worth of timeline data from the present date
+(UTC) for the pair!</p>
+<p>If you do specify a <tt class="docutils literal"><span class="pre">Range</span></tt> header it must be supplied in this
+format:</p>
+<div class="highlight-python"><pre>Range: months=3</pre>
+</div>
+<p>The months value can be any number between 0 and 9999 - the API will
+return timeline data in that date range from the present date (UTC).</p>
+<p>You may also provide an engine argument in the <tt class="docutils literal"><span class="pre">Range</span></tt> header, the
+only two search engines supported at this time are Google and Bing:</p>
+<div class="highlight-python"><pre>Range: engine=google</pre>
+</div>
+<p>Specifying both arguments requires a semicolon separating them:</p>
+<div class="highlight-python"><pre>Range: months=3; engine=google</pre>
+</div>
+<p>If no engine argument is supplied BOTH Bing and Google results will be
+returned in the result set!</p>
+<p>The server will return a list of objects (in XML or JSON depending on
+your Accept header); each of which contains the timestamp (UTC) the
+rank was checked, the change in rank from the previous check, and the
+rank. The change field will be either 0 (no change in rank), a
+positive integer representing an increase in rank, or a negative
+integer representing a decrease in rank.</p>
+<p>It is important to note that a positive increase in rank will mean the
+rank number is approaching one as it increases and a negative decrease
+in rank will indicate the rank is moving further from one.</p>
+<p>If you do not have rights to the pair ID, if it does not exist, OR if
+the specified pair does not have a timeline (it is unranked) it will
+return a 404 error code.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/234/timeline&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Accept&#39;</span><span class="p">,</span> <span class="s">&#39;application/vnd.whoosh.api+json&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Range&#39;</span><span class="p">,</span> <span class="s">&#39;months=2; engine=google&#39;</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">decoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The JSON result:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Note you may not have 2 month&#39;s worth of results</span>
+<span class="p">[{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1319278514</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">405</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1319293812</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">29</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">434</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1319377261</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">92</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">526</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1319464226</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">11</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">537</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1319800474</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">471</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">66</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1319896358</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">64</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1319984607</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">67</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320071539</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">66</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320159986</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">67</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320246062</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">61</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320334686</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">64</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320420335</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">62</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320505928</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320623904</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">41</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320684386</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">41</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320767756</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">29</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320767758</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320862465</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">29</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320968296</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">29</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1320968298</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1321037673</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">28</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1321037674</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1321124212</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1321223416</span><span class="p">,</span> <span class="s">&quot;engine&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>  <span class="s">&quot;change&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-a-pair-s-settings">
+<h1>GET a pair&#8217;s settings<a class="headerlink" href="#get-a-pair-s-settings" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/{id}/settings</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">{id}</span></tt> is the unique ID of the pair retrieved from either a GET all or
+GET one request.</p>
+<p>The server will return a dictionary with the configured ISO2 country
+code, ISO2 language code, and the configured TLD.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/234/settings&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Accept&#39;</span><span class="p">,</span> <span class="s">&#39;application/vnd.whoosh.api+json&#39;</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">decoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The JSON result:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;lang&quot;</span><span class="p">:</span> <span class="s">&quot;ja&quot;</span><span class="p">,</span> <span class="s">&quot;country&quot;</span><span class="p">:</span> <span class="s">&quot;US&quot;</span><span class="p">,</span> <span class="s">&quot;tld&quot;</span><span class="p">:</span> <span class="s">&quot;.com&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-a-count-of-all-your-pairs">
+<h1>GET a count of all your pairs<a class="headerlink" href="#get-a-count-of-all-your-pairs" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/count</span></tt></p>
+<p>This method will return a count of all your pairs.</p>
+<p>The server will return a document with the value in the body as
+plaintext - it will not return it as a json encoded string or xml. It
+can, at all times, be safely coerced to an integer value.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/count&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-a-count-of-all-your-ranking-pairs">
+<h1>GET a count of all your ranking pairs<a class="headerlink" href="#get-a-count-of-all-your-ranking-pairs" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/ranked_count</span></tt></p>
+<p>This method will return a count of all your ranking pairs.</p>
+<p>The server will return a document with the value in the body as
+plaintext - it will not return it as a json encoded string or xml. It
+can, at all times, be safely coerced to an integer value.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/ranked_count&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-a-count-of-all-your-unranking-pairs">
+<h1>GET a count of all your unranking pairs<a class="headerlink" href="#get-a-count-of-all-your-unranking-pairs" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/unranked_count</span></tt></p>
+<p>This method will return a count of all your unranking pairs.</p>
+<p>The server will return a document with the value in the body as
+plaintext - it will not return it as a json encoded string or xml. It
+can, at all times, be safely coerced to an integer value.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/unranked_count&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-a-pair-s-latest-page-cache-of-the-rank">
+<h1>GET a pair&#8217;s latest page cache of the rank<a class="headerlink" href="#get-a-pair-s-latest-page-cache-of-the-rank" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/{id}/cache</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">{id}</span></tt> is the unique ID of the pair retreived from either a GET all or
+GET one request.</p>
+<p>The server will return the document body as-is. If there is no rank
+(therefore no page-cache) this method will return a 404.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/234/cache&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">decoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The document will be a valid HTML document scraped from the Google
+SERP page.</p>
+</div>
+<div class="section" id="get-a-checksum-of-all-your-pairs">
+<h1>GET a checksum of all your pairs<a class="headerlink" href="#get-a-checksum-of-all-your-pairs" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/checksum</span></tt></p>
+<p>This method retrieves all of your pairs just as it does with <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">all</span></tt>
+above, converts it to a json string and hashes that string with md5 to
+produce the checksum.</p>
+<p>If you are caching the result set provided by <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">all</span></tt>, you can
+request a checksum from the server and compute your own checksum from
+the cached pairs that you have.</p>
+<p>When you compute your own checksum, ensure your cached pairs is a json
+string (exactly as the API would return it to you).</p>
+<p>The server will return a document with the checksum in the body - it
+will not return it as a json encoded string or xml.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/checksum&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-a-checksum-for-a-single-pair">
+<h1>GET a checksum for a single pair<a class="headerlink" href="#get-a-checksum-for-a-single-pair" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/{id}/checksum</span></tt></p>
+<p>This method retrieves a single pair, just as it does with <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">one</span></tt>
+above, converts it to a json string and hashes that string with md5 to
+produce the checksum.</p>
+<p>If you are caching the result set provided by <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">one</span></tt>, you can
+request a checksum from the server and compute your own checksum from
+the cached pair that you have.</p>
+<p>When you compute your own checksum, ensure your cached pair is a json
+string (exactly as the API would return it to you).</p>
+<p>The server will return a document with the checksum in the body - it
+will not return it as a json encoded string or xml.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/91512/checksum&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-a-checksum-for-all-ranked-pairs">
+<h1>GET a checksum for all ranked pairs<a class="headerlink" href="#get-a-checksum-for-all-ranked-pairs" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/ranked_checksum</span></tt></p>
+<p>This method retrieves all of your ranking pairs just as it does with
+<tt class="docutils literal"><span class="pre">GET</span> <span class="pre">all</span> <span class="pre">ranked</span></tt> above, converts it to a json string and hashes that string
+with md5 to produce the checksum.</p>
+<p>If you are caching the result set provided by <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">all</span> <span class="pre">ranked</span></tt>, you
+can request a checksum from the server and compute your own checksum
+from the cached pairs that you have.</p>
+<p>When you compute your own checksum, ensure your cached pairs is a json
+string (exactly as the API would return it to you).</p>
+<p>The server will return a document with the checksum in the body - it
+will not return it as a json encoded string or xml.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/ranked_checksum&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-a-checksum-for-all-unranked-pairs">
+<h1>GET a checksum for all unranked pairs<a class="headerlink" href="#get-a-checksum-for-all-unranked-pairs" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/ranktracker/pairs/unranked_checksum</span></tt></p>
+<p>This method retrieves all of your unranking pairs just as it does with
+<tt class="docutils literal"><span class="pre">GET</span> <span class="pre">all</span> <span class="pre">unranked</span></tt> above, converts it to a json string and hashes
+that string with md5 to produce the checksum.</p>
+<p>If you are caching the result set provided by <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">all</span> <span class="pre">unranked</span></tt>,
+you can request a checksum from the server and compute your own
+checksum from the cached pairs that you have.</p>
+<p>When you compute your own checksum, ensure your cached pairs is a json
+string (exactly as the API would return it to you).</p>
+<p>The server will return a document with the checksum in the body - it
+will not return it as a json encoded string or xml.</p>
+<p>An example in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="c"># Build the request</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">&#39;https://secure.whooshtraffic.com/ranktracker/pairs/unranked_checksum&#39;</span><span class="p">)</span>
+<span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
+
+<span class="c"># Assuming the SSL verifying opener</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="ranktracker_api.html">Rank Tracker API Documentation</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ranktracker_api_head.html">HEAD check if a URL/Keyword pair exists</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2011, Whoosh Traffic!.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
