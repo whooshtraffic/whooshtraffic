@@ -78,6 +78,8 @@ its timeline, to update it, or to delete it), the configured URL and
 keyword, as well as the datetime created and datetime modified (as a
 Unix epoch timestamp).
 
+This method includes the pair's settings in the resulting output.
+
 Here is an example in Python::
 
        ...
@@ -93,16 +95,16 @@ Here is an example in Python::
 
 The JSON result::
 
-       [{"url": "http://yourdomain.com", "modified": 1321384422, "id": 18735, "keyword": "your keyword1", "locale" : "98726", "created": 1318965959},
-        {"url": "http://yourdomain.com", "modified": 1321383485, "id": 18736, "keyword": "your keyword2", "locale" : "98726", "created": 1318965975},
-        {"url": "http://yourdomain.com", "modified": 1321376887, "id": 18737, "keyword": "your keyword3", "locale" : "98726", "created": 1318965988},
-        {"url": "http://yourdomain.com", "modified": 1321381710, "id": 18738, "keyword": "your keyword4", "locale" : "98726", "created": 1318966006},
-        {"url": "http://yourdomain.com", "modified": 1321381018, "id": 18739, "keyword": "your keyword5", "locale" : "98726", "created": 1318966024},
-        {"url": "http://yourdomain.com", "modified": 1321341601, "id": 20204, "keyword": "your keyword6", "locale" : "98726", "created": 1319296358},
-        {"url": "http://yourdomain.com", "modified": 1321341601, "id": 20205, "keyword": "your keyword7", "locale" : "98726", "created": 1319296383},
-        {"url": "http://yourdomain.com", "modified": 1321383132, "id": 20206, "keyword": "your keyword8", "locale" : "98726", "created": 1319296396},
-        {"url": "http://yourdomain.com", "modified": 1321372078, "id": 20207, "keyword": "your keyword9", "locale" : "98726", "created": 1319296411},
-        {"url": "http://yourdomain.com", "modified": 1321385958, "id": 20208, "keyword": "your keyword10", "locale" : "98726", "created": 1319296425}]
+       [{"url": "http://yourdomain.com", "modified": 1321384422, "id": 18735, "keyword": "your keyword1", "locale" : "98726", "created": 1318965959, "settings" : {"lang" : "en", "country" : "US", "tld" : ".com"}},
+        {"url": "http://yourdomain.com", "modified": 1321383485, "id": 18736, "keyword": "your keyword2", "locale" : "98726", "created": 1318965975, "settings" : {"lang" : "en", "country" : "US", "tld" : ".com"}},
+        {"url": "http://yourdomain.com", "modified": 1321376887, "id": 18737, "keyword": "your keyword3", "locale" : "98726", "created": 1318965988, "settings" : {"lang" : "en", "country" : "US", "tld" : ".com"}},
+        {"url": "http://yourdomain.com", "modified": 1321381710, "id": 18738, "keyword": "your keyword4", "locale" : "98726", "created": 1318966006, "settings" : {"lang" : "en", "country" : "US", "tld" : ".com"}},
+        {"url": "http://yourdomain.com", "modified": 1321381018, "id": 18739, "keyword": "your keyword5", "locale" : "98726", "created": 1318966024, "settings" : {"lang" : "en", "country" : "US", "tld" : ".com"}},
+        {"url": "http://yourdomain.com", "modified": 1321341601, "id": 20204, "keyword": "your keyword6", "locale" : "98726", "created": 1319296358, "settings" : {"lang" : "en", "country" : "US", "tld" : ".com"}},
+        {"url": "http://yourdomain.com", "modified": 1321341601, "id": 20205, "keyword": "your keyword7", "locale" : "98726", "created": 1319296383, "settings" : {"lang" : "en", "country" : "US", "tld" : ".com"}},
+        {"url": "http://yourdomain.com", "modified": 1321383132, "id": 20206, "keyword": "your keyword8", "locale" : "98726", "created": 1319296396, "settings" : {"lang" : "en", "country" : "US", "tld" : ".com"}},
+        {"url": "http://yourdomain.com", "modified": 1321372078, "id": 20207, "keyword": "your keyword9", "locale" : "98726", "created": 1319296411, "settings" : {"lang" : "en", "country" : "US", "tld" : ".com"}},
+        {"url": "http://yourdomain.com", "modified": 1321385958, "id": 20208, "keyword": "your keyword10", "locale" : "98726", "created": 1319296425, "settings" : {"lang" : "en", "country" : "US", "tld" : ".com"}}]
 
 ==============================================================
 GET all (or a range of) configured *ranking* URL/Keyword pairs
@@ -129,6 +131,8 @@ both engines based on the pair, then store which result is matched to
 which engine in the results - so we don't have any correlation between
 the two (except when returning results as is the case with the
 GET_timeline method).
+
+This method includes the pair's settings in the resulting output.
 
 The header arguments and output of this API method is precisely the
 same as that of the generic GET ALL above. Refer to the section above
@@ -160,6 +164,8 @@ both engines based on the pair, then store which result is matched to
 which engine in the results - so we don't have any correlation between
 the two (except when returning results as is the case with the
 GET_timeline method).
+
+This method includes the pair's settings in the resulting output.
 
 The header arguments and output of this API method is precisely the
 same as that of the generic GET ALL above. Refer to the section above
