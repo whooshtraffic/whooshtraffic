@@ -14,6 +14,15 @@ Contents:
    
    API Docs <api>
 
+=================
+Language Wrappers
+=================
+
+We presently have only one language wrapper (for PHP) and it can be
+found on our `GitHub profile <https://github.com/whooshtraffic>`_.
+
+* `PHP API Wrapper <https://github.com/whooshtraffic/whoosh-traffic_api_php>`_
+
 =============
 Authorization
 =============
