@@ -509,3 +509,13 @@ An example in Python::
        
        # Assuming the SSL verifying opener
        result  = opener.open(req).read()
+
+======================
+GET your account quota
+======================
+
+The endpoint path for this API method is:
+``https://secure.whooshtraffic.com/ranktracker/pairs/quota``
+
+It returns a JSON object containing your quota and your the number
+you've used.
