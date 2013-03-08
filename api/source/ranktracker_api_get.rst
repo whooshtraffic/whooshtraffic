@@ -380,8 +380,8 @@ An example in Python::
        req.add_header('Authorization', 'Basic %s' % auth)
        
        # Assuming the SSL verifying opener
+       # This also returns straight HTML (no json)
        result  = opener.open(req).read()
-       decoded = json.loads(result)
 
 The document will be a valid HTML document scraped from the Google
 SERP page.
