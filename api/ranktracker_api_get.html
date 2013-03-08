@@ -369,8 +369,8 @@ GET one request.</p>
 <span class="n">req</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">auth</span><span class="p">)</span>
 
 <span class="c"># Assuming the SSL verifying opener</span>
+<span class="c"># This also returns straight HTML (no json)</span>
 <span class="n">result</span>  <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="n">decoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The document will be a valid HTML document scraped from the Google
@@ -499,7 +499,7 @@ you&#8217;ve used.</p>
       </div>
 
     <div class="footer">
-        &copy; Copyright 2012, Whoosh Traffic.
+        &copy; Copyright 2013, Whoosh Traffic.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
