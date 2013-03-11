@@ -90,8 +90,7 @@ An example in Python::
        # Format and b64encode according to 14.8
        auth = base64.b64encode(login+':'+key)
        
-       data = """
-       <?xml version="1.0" encoding="UTF-8"?>
+       data = """<?xml version="1.0" encoding="UTF-8"?>
        <pair>
          <url>http://ixmat.us</url>
          <keyword>parnell springmeyer</keyword>
