@@ -151,6 +151,43 @@ results returned as:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="post-query-for-number-of-hits-of-a-given-search-query">
+<h1>POST query for number of hits of a given search query<a class="headerlink" href="#post-query-for-number-of-hits-of-a-given-search-query" title="Permalink to this headline">¶</a></h1>
+<p>The endpoint path for this API method is:
+<tt class="docutils literal"><span class="pre">https://secure.whooshtraffic.com/google/hits</span></tt></p>
+<p>If successful it returns a <cite>200 OK</cite> with an integer value in the
+return body. If there are no search results for the given query it
+will return a <cite>204 No Content</cite>.</p>
+<dl class="docutils">
+<dt>It requires an XML document of this form::</dt>
+<dd><p class="first">&lt;?xml version=&#8221;1.0&#8221; encoding=&#8221;UTF-8&#8221;?&gt;
+&lt;hits&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;query&gt;</dt>
+<dd>&lt;keyword&gt;a keyword&lt;/keyword&gt;</dd>
+</dl>
+<p>&lt;/query&gt;</p>
+</div></blockquote>
+<p class="last">&lt;/hits&gt;</p>
+</dd>
+<dt>Locale and country can be tweaked::</dt>
+<dd><p class="first">&lt;?xml version=&#8221;1.0&#8221; encoding=&#8221;UTF-8&#8221;?&gt;
+&lt;hits&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;query&gt;</dt>
+<dd>&lt;keyword&gt;a keyword&lt;/keyword&gt;
+&lt;locale&gt;78748&lt;/locale&gt;
+&lt;country&gt;US&lt;/locale&gt;</dd>
+</dl>
+<p>&lt;/query&gt;</p>
+</div></blockquote>
+<p class="last">&lt;/hits&gt;</p>
+</dd>
+</dl>
+<p>Only locales (postcodes) for the USA are supported at this time.</p>
+</div>
 
 
       </div>

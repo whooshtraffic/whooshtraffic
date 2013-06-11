@@ -107,3 +107,34 @@ An example in Python::
        
        # Assuming the SSL verifying opener
        result  = opener.open(req).read()
+
+=====================================================
+POST query for number of hits of a given search query
+=====================================================
+
+The endpoint path for this API method is:
+``https://secure.whooshtraffic.com/google/hits``
+
+If successful it returns a `200 OK` with an integer value in the
+return body. If there are no search results for the given query it
+will return a `204 No Content`.
+
+It requires an XML document of this form::
+       <?xml version="1.0" encoding="UTF-8"?>
+       <hits>
+         <query>
+           <keyword>a keyword</keyword>
+         </query>
+       </hits>
+
+Locale and country can be tweaked::
+       <?xml version="1.0" encoding="UTF-8"?>
+       <hits>
+         <query>
+           <keyword>a keyword</keyword>
+           <locale>78748</locale>
+           <country>US</locale>
+         </query>
+       </hits>
+
+Only locales (postcodes) for the USA are supported at this time.

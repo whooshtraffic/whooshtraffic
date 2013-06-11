@@ -517,5 +517,7 @@ GET your account quota
 The endpoint path for this API method is:
 ``https://secure.whooshtraffic.com/ranktracker/pairs/quota``
 
-It returns a JSON object containing your quota and your the number
+It returns a JSON object containing your quota and the number of pairs
 you've used.
+
+
