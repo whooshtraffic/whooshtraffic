@@ -120,6 +120,7 @@ return body. If there are no search results for the given query it
 will return a `204 No Content`.
 
 It requires an XML document of this form::
+
        <?xml version="1.0" encoding="UTF-8"?>
        <hits>
          <query>
@@ -128,6 +129,7 @@ It requires an XML document of this form::
        </hits>
 
 Locale and country can be tweaked::
+
        <?xml version="1.0" encoding="UTF-8"?>
        <hits>
          <query>

@@ -158,34 +158,24 @@ results returned as:</p>
 <p>If successful it returns a <cite>200 OK</cite> with an integer value in the
 return body. If there are no search results for the given query it
 will return a <cite>204 No Content</cite>.</p>
-<dl class="docutils">
-<dt>It requires an XML document of this form::</dt>
-<dd><p class="first">&lt;?xml version=&#8221;1.0&#8221; encoding=&#8221;UTF-8&#8221;?&gt;
-&lt;hits&gt;</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>&lt;query&gt;</dt>
-<dd>&lt;keyword&gt;a keyword&lt;/keyword&gt;</dd>
-</dl>
-<p>&lt;/query&gt;</p>
-</div></blockquote>
-<p class="last">&lt;/hits&gt;</p>
-</dd>
-<dt>Locale and country can be tweaked::</dt>
-<dd><p class="first">&lt;?xml version=&#8221;1.0&#8221; encoding=&#8221;UTF-8&#8221;?&gt;
-&lt;hits&gt;</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>&lt;query&gt;</dt>
-<dd>&lt;keyword&gt;a keyword&lt;/keyword&gt;
-&lt;locale&gt;78748&lt;/locale&gt;
-&lt;country&gt;US&lt;/locale&gt;</dd>
-</dl>
-<p>&lt;/query&gt;</p>
-</div></blockquote>
-<p class="last">&lt;/hits&gt;</p>
-</dd>
-</dl>
+<p>It requires an XML document of this form:</p>
+<div class="highlight-python"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;hits&gt;
+  &lt;query&gt;
+    &lt;keyword&gt;a keyword&lt;/keyword&gt;
+  &lt;/query&gt;
+&lt;/hits&gt;</pre>
+</div>
+<p>Locale and country can be tweaked:</p>
+<div class="highlight-python"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;hits&gt;
+  &lt;query&gt;
+    &lt;keyword&gt;a keyword&lt;/keyword&gt;
+    &lt;locale&gt;78748&lt;/locale&gt;
+    &lt;country&gt;US&lt;/locale&gt;
+  &lt;/query&gt;
+&lt;/hits&gt;</pre>
+</div>
 <p>Only locales (postcodes) for the USA are supported at this time.</p>
 </div>
 
