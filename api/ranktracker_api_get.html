@@ -101,14 +101,21 @@ types:</p>
 of your pairs! If you have a large number of pairs, the response time
 may be slow.</p>
 <p>If you do specify a <tt class="docutils literal"><span class="pre">Range</span></tt> header with an offset argument it will
-return a maximum of 10 results per set. The Range header must be
+return a default of 10 results per set. The Range header must be
 supplied in this format:</p>
 <div class="highlight-python"><pre>Range: offset=0</pre>
 </div>
-<p>The offset value can be any number - the API will return a limit of
-ten results from that offset. The response will also return a <tt class="docutils literal"><span class="pre">Link</span></tt>
-header to reference the Previous, Current, and Next positions based on
-the offset you&#8217;ve provided.</p>
+<p>If you wish to control the <em>limit</em>; you can specify a limit argument
+in the <strong>Range</strong> header like so:</p>
+<div class="highlight-python"><pre>Range: limit=20
+Range: offset=200; limit=100</pre>
+</div>
+<p>Both <em>limit</em> and <em>offset</em> are optional arguments in the Range header;
+the default for offset is zero and the default for limit is ten.</p>
+<p>The offset value can be any number - the API will return a default
+limit of ten results from that offset. The response will also return a
+<tt class="docutils literal"><span class="pre">Link</span></tt> header to reference the Previous, Current, and Next positions
+based on the offset you&#8217;ve provided.</p>
 <p>This API method will return ALL pairs regardless of whether they are
 ranking or unranked (not in the SERPs)!! If you wish to return a
 result of <em>only</em> the ranking or unranked pairs, see below for the

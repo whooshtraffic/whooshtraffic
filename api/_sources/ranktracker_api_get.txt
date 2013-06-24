@@ -58,15 +58,24 @@ of your pairs! If you have a large number of pairs, the response time
 may be slow.
 
 If you do specify a ``Range`` header with an offset argument it will
-return a maximum of 10 results per set. The Range header must be
+return a default of 10 results per set. The Range header must be
 supplied in this format::
 
        Range: offset=0
 
-The offset value can be any number - the API will return a limit of
-ten results from that offset. The response will also return a ``Link``
-header to reference the Previous, Current, and Next positions based on
-the offset you've provided.
+If you wish to control the *limit*; you can specify a limit argument
+in the **Range** header like so::
+
+       Range: limit=20
+       Range: offset=200; limit=100
+
+Both *limit* and *offset* are optional arguments in the Range header;
+the default for offset is zero and the default for limit is ten.
+
+The offset value can be any number - the API will return a default
+limit of ten results from that offset. The response will also return a
+``Link`` header to reference the Previous, Current, and Next positions
+based on the offset you've provided.
 
 This API method will return ALL pairs regardless of whether they are
 ranking or unranked (not in the SERPs)!! If you wish to return a
